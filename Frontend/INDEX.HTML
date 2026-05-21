@@ -1,142 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content=
-    "width=device-width, initial-scale=1.0">
-    <title>DEV STUDIO</title>
-
-    <!-- CSS Link -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev Digital Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
-<section class="hero">
-  <div class="hero-content">
-    <h1>Dev digital studio</h1>
-    <p>Capturing Your Beautiful Moments 📸</p>
-    <a href="#portfolio" class="btn">View Our Work</a>
-  </div>
-</section>
 <body>
 
-<!-- Navbar -->
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">DEV STUDIO</div>
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#services">Services</a>
 
-<nav>
-    <header>
-    <div>
-        <a href="#">Home</a>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
-        </footer>
+      <div class="dropdown">
+        <a href="#events" class="dropdown-toggle">Events <span class="arrow">▾</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#events" onclick="filterGallery('pre-wedding')">Pre Wedding</a></li>
+          <li><a href="#events" onclick="filterGallery('wedding')">Wedding</a></li>
+          <li><a href="#events" onclick="filterGallery('mehndi')">Mehndi</a></li>
+          <li><a href="#events" onclick="filterGallery('haldi')">Haldi</a></li>
+          <li><a href="#events" onclick="filterGallery('cocktail')">Cocktail</a></li>
+          <li><a href="#events" onclick="filterGallery('bachelor')">Bachelor</a></li>
+          <li><a href="#events" onclick="filterGallery('baarat')">Baarat</a></li>
+          <li><a href="#events" onclick="filterGallery('birthday')">Birthday</a></li>
+          <li><a href="#events" onclick="filterGallery('corporate')">Corporate</a></li>
+          <li><a href="#events" onclick="filterGallery('kitty')">Kitty Party</a></li>
+          <li><a href="#events" onclick="filterGallery('farewell')">Fresher / Farewell</a></li>
+          <li><a href="#events" onclick="filterGallery('afterparty')">After Party</a></li>
+        </ul>
+      </div>
+
+      <div class="dropdown">
+        <a href="#gallery" class="dropdown-toggle">Gallery <span class="arrow">▾</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#gallery">All Photos</a></li>
+          <li><a href="#gallery" onclick="filterGallery('wedding')">Wedding</a></li>
+          <li><a href="#gallery" onclick="filterGallery('pre-wedding')">Pre Wedding</a></li>
+          <li><a href="#gallery" onclick="filterGallery('birthday')">Birthday</a></li>
+        </ul>
+      </div>
+
+      <a href="#contact">Contact</a>
     </div>
-</nav>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+  </nav>
 
-<!-- Hero -->
-<section class="hero">
-    
-    <p>Wedding | Pre-Wedding | Baby Shoot | Events</p>
-    <a href="#contact" class="btn">Book Now</a>
-</section>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-sub">Faridabad, Haryana</p>
+      <h1>DEV DIGITAL<br><em>STUDIO</em></h1>
+      <p class="hero-typed">Capturing your <span id="typed-text"></span><span class="cursor">|</span></p>
+      <a href="#gallery" class="hero-btn">View Our Work</a>
+    </div>
+    <div class="hero-scroll">scroll ↓</div>
+  </section>
 
-<!-- Services -->
+  <!-- SERVICES -->
 <section class="section" id="services">
-    <h2>Our Services</h2>
-
-    <div class="services">
-        <div class="card">Pre-Wedding Shoot</div>
-        <div class="card">Wedding Shoot</div>
-        <div class="card">Baby Shower</div>
-        <div class="card">Birthday Shoot</div>
-        <div class="card">Cocktail Party</div>
-        <div class="card">Bridal Shoot</div>
-        <div class="card">Groom Shoot</div>
-        <div class="card">Baby Shoot</div>
-        <div class="card">Photo Frames</div>
-        <div class="card">haldi shoot</div>
-        <div class="card">mehendi shoot</div>
-        <div class="card">normal party</div>
-        <div class="card">Dharmic function</div>
-        <div class="card">capture trip memorys</div>
-        <div class="card">Nature/office/business area /everythink</div>
-        <div class="card">Teaser & Video Editing</div>
+  <div class="section-header" data-aos="fade-up">
+    <span class="section-tag">What We Offer</span>
+    <h2>Every Moment Deserves to be<em> Remembered Forever</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card" onclick="filterAndGo('pre-wedding')" data-aos="fade-up" data-aos-delay="0">
+      <span class="service-icon">💍</span>
+      <h3>Pre-Wedding Shoot</h3>
     </div>
-</section>
-
-<!-- Portfolio -->
-<section class="section" id="portfolio">
-    <h2>Our Portfolio</h2>
-
-    <div class="portfolio">
-        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486">
-        <img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde">
-        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc">
+    <div class="service-card" onclick="filterAndGo('wedding')" data-aos="fade-up" data-aos-delay="50">
+      <span class="service-icon">👰</span>
+      <h3>Wedding Shoot</h3>
     </div>
+    <div class="service-card" onclick="filterAndGo('birthday')" data-aos="fade-up" data-aos-delay="100">
+      <span class="service-icon">🎂</span>
+      <h3>Birthday Shoot</h3>
+    </div>
+    <div class="service-card" onclick="filterAndGo('cocktail')" data-aos="fade-up" data-aos-delay="150">
+      <span class="service-icon">🍼</span>
+      <h3>Baby Shower</h3>
+    </div>
+    <div class="service-card" onclick="filterAndGo('cocktail')" data-aos="fade-up" data-aos-delay="200">
+      <span class="service-icon">🥂</span>
+      <h3>Cocktail Party</h3>
+    </div>
+    <div class="service-card" onclick="filterAndGo('bridal')" data-aos="fade-up" data-aos-delay="250">
+      <span class="service-icon">👑</span>
+      <h3>Bridal Shoot</h3>
+    </div>
+    <div class="service-card" onclick="filterAndGo('mehndi')" data-aos="fade-up" data-aos-delay="300">
+      <span class="service-icon">🎨</span>
+      <h3>Mehndi Shoot</h3>
+    </div>
+    <div class="service-card" onclick="filterAndGo('haldi')" data-aos="fade-up" data-aos-delay="350">
+      <span class="service-icon">🌼</span>
+      <h3>Haldi Shoot</h3>
+    </div>
+    <div class="service-card" onclick="filterAndGo('corporate')" data-aos="fade-up" data-aos-delay="400">
+      <span class="service-icon">🏢</span>
+      <h3>Corporate Events</h3>
+    </div>
+    <div class="service-card" onclick="filterAndGo('groom')" data-aos="fade-up" data-aos-delay="450">
+      <span class="service-icon">🎬</span>
+      <h3>Groom Shoot</h3>
+    </div>
+    <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+      <span class="service-icon">🖼️</span>
+      <h3>Photo Frames</h3>
+    </div>
+    <div class="service-card" data-aos="fade-up" data-aos-delay="550">
+      <span class="service-icon">🌿</span>
+      <h3>Nature & Travel Shoots</h3>
+    </div>
+  </div>
 </section>
 
-  <section id="portfolio">
-  <h2>Our Shoots</h2>
+  <!-- EVENTS -->
+  <section class="section" id="events">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">Browse by Category</span>
+      <h2>Events</h2>
+    </div>
+    <div class="filter-tabs" data-aos="fade-up">
+      <button class="filter-btn active" onclick="filterGallery('all')">All</button>
+      <button class="filter-btn" onclick="filterGallery('pre-wedding')">Pre Wedding</button>
+      <button class="filter-btn" onclick="filterGallery('wedding')">Wedding</button>
+      <button class="filter-btn" onclick="filterGallery('mehndi')">Mehndi</button>
+      <button class="filter-btn" onclick="filterGallery('haldi')">Haldi</button>
+      <button class="filter-btn" onclick="filterGallery('cocktail')">Cocktail</button>
+      <button class="filter-btn" onclick="filterGallery('bachelor')">Bachelor</button>
+      <button class="filter-btn" onclick="filterGallery('baarat')">Baarat</button>
+      <button class="filter-btn" onclick="filterGallery('birthday')">Birthday</button>
+      <button class="filter-btn" onclick="filterGallery('corporate')">Corporate</button>
+      <button class="filter-btn" onclick="filterGallery('kitty')">Kitty Party</button>
+      <button class="filter-btn" onclick="filterGallery('farewell')">Fresher / Farewell</button>
+      <button class="filter-btn" onclick="filterGallery('afterparty')">After Party</button>
+      <button class="filter-btn" onclick="filterGallery('bridal')">Bridal Shoot</button>
+      <button class="filter-btn" onclick="filterGallery('groom')">Groom Shoot</button>
+      <div class="gallery-grid" id="gallery-grid">
+  </section>
 
-  
-<div class="gallery">
-  
-  <img src="images/shoot3.jpg">
-  <img src="images/shoot4.jpg">
-  <img src="images/shoot5.jpg">
-  <img src="images/shoot6.jpg">
-  <img src="images/shoot1.jpg">
-  <img src="images/shoot2.jpg">
-  
-</div>
-  
-</section>
+  <!-- GALLERY -->
+  <section class="section dark-section" id="gallery">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">Our Work</span>
+      <h2>Portfolio Gallery</h2>
+    </div>
+    <div class="gallery-grid" id="portfolio-grid"></div>
+  </section>
 
-<!-- About -->
-<section class="section">
-    <h2>About Us</h2>
-    <p>
-        Dev Studio provides professional photography and videography services for weddings,
-        pre-wedding shoots, birthday parties, cocktail events, baby showers, bridal & groom shoots,
-        baby shoots, teaser videos, and custom photo frames.
-    </p>
-    <p><strong>Owner:</strong> Devender Singh</p>
-</section>
+  <!-- ABOUT -->
+  <section class="section" id="about" data-aos="fade-up">
+    <div class="about-wrap">
+      <div class="about-text">
+        <span class="section-tag">About Us</span>
+        <h2>Dev Digital Studio</h2>
+        <p>We are a professional photography and videography studio based in Faridabad, Haryana. We capture every emotion, every moment, every memory — with cinematic precision and artistic vision.</p>
+        <p><strong>Owner:</strong> Devender Singh</p>
+        <p>📞 9810675960</p>
+        <p>📍 Sector 16, Faridabad, Haryana</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/devstudio0707" target="_blank" class="social-btn insta">Instagram</a>
+          <a href="https://www.youtube.com/@_dev_studio" target="_blank" class="social-btn yt">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- Contact -->
-<section class="section contact" id="contact">
-    <h2>Contact Us</h2>
-    <p>📞 9810675960</p>
-    <p>📍 Visit our studio (Sector 16 Faridabad,haryana)</p>
-</section>
+  <!-- CONTACT + BOOKING -->
+  <section class="section dark-section" id="contact">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">Get in Touch</span>
+      <h2>Book Your Shoot</h2>
+    </div>
+    <div class="contact-wrap" data-aos="fade-up">
+      <form id="bookingForm" class="booking-form">
+        <div class="form-row">
+          <input type="text" id="fname" placeholder="Your Name" required>
+          <input type="tel" id="fphone" placeholder="Phone Number" required>
+        </div>
+        <div class="form-row">
+          <select id="fevent">
+            <option value="">Select Event Type</option>
+            <option>Pre Wedding</option>
+            <option>Wedding</option>
+            <option>Mehndi</option>
+            <option>Haldi</option>
+            <option>Cocktail Party</option>
+            <option>Bachelor Party</option>
+            <option>Baarat</option>
+            <option>Birthday</option>
+            <option>Corporate</option>
+            <option>Kitty Party</option>
+            <option>Fresher / Farewell</option>
+            <option>After Party</option>
+            <option>Baby Shower</option>
+            <option>Other</option>
+          </select>
+          <input type="date" id="fdate">
+        </div>
+        <textarea id="fmessage" placeholder="Any special requirements..." rows="3"></textarea>
+        <button type="submit" class="submit-btn">Book Now — Send Enquiry</button>
+        <p id="form-status" class="form-status"></p>
+      </form>
+      <div class="contact-info">
+        <div class="contact-card">
+          <span>📞</span>
+          <div>
+            <p class="label">Call / WhatsApp</p>
+            <p><a href="tel:9810675960">9810675960</a></p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span>📍</span>
+          <div>
+            <p class="label">Studio Location</p>
+            <p>Sector 16, Faridabad, Haryana</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span>✉️</span>
+          <div>
+            <p class="label">Email</p>
+            <p>devstudio@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- Footer -->
-<footer>
-    <p>© 2026 Dev Studio | All Rights Reserved | devstudio@gmail.com</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Dev Digital Studio &nbsp;|&nbsp; All Rights Reserved</p>
+    <p>Sector 16, Faridabad, Haryana &nbsp;|&nbsp; devstudio@gmail.com</p>
+  </footer>
 
-<!-- WhatsApp -->
-<a href="https://wa.me/919810675960" class="whatsapp">Chat</a>
-<!-- social media -->
- <a href="https://www.instagram.com/devstudio0707?igsh=MXVhYjRmdDBjbm9sNg==" class="instagram">DM click for visit instagram page  </a>
- 
- <a href="https://www.youtube.com/@_dev_studio" target="_blank">
-  ▶️ Visit our YouTube
-</a>
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/919810675960" class="float-btn whatsapp-float" target="_blank" title="WhatsApp">💬</a>
+  <a href="https://www.instagram.com/devstudio0707" class="float-btn insta-float" target="_blank" title="Instagram">📸</a>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <button class="lb-prev" onclick="changeLightbox(-1)">&#8249;</button>
+    <img src="" id="lb-img" alt="Gallery Image">
+    <button class="lb-next" onclick="changeLightbox(1)">&#8250;</button>
+  </div>
 
-
-
-<!-- JS Link -->
-<script src="script.js"></script>
-
-<section>
-  <h2>Book Your Shoot</h2>
-
-  <form id="bookingForm">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="text" id="phone" placeholder="Phone Number" required>
-    <button type="submit">Book Now</button>
-  </form>
-</section>
-
+  <!-- SCRIPTS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
