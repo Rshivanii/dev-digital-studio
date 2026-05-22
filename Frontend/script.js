@@ -61,18 +61,18 @@ hamburger.addEventListener("click", () => {
 // Abhi images ko categories assign karo
 // Baad mein backend se aayegi — abhi sab images show hongi
 const galleryData = [
-  { id: 1,  src: "http://localhost:5000/images/shoot1.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
-  { id: 2,  src: "http://localhost:5000/images/shoot2.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
-  { id: 3,  src: "http://localhost:5000/images/shoot3.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
-  { id: 4,  src: "http://localhost:5000/images/shoot4.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
-  { id: 5,  src: "http://localhost:5000/images/shoot5.jpg",  title: "Couple Party",          category: "cocktail" },
-  { id: 6,  src: "http://localhost:5000/images/shoot6.jpg",  title: "Couple Party",          category: "cocktail" },
-  { id: 7,  src: "http://localhost:5000/images/shoot7.jpg",  title: "Bridal Shoot",          category: "bridal" },
-  { id: 8,  src: "http://localhost:5000/images/shoot8.jpg",  title: "Party Hall Decoration", category: "wedding" },
-  { id: 9,  src: "http://localhost:5000/images/shoot9.jpg",  title: "Party Hall Decoration", category: "wedding" },
-  { id: 10, src: "http://localhost:5000/images/shoot10.jpg", title: "Groom Entry",           category: "groom" },
-  { id: 11, src: "http://localhost:5000/images/shoot11.jpg", title: "Bridal Shoot",          category: "bridal" },
-  { id: 12, src: "http://localhost:5000/images/shoot12.jpg", title: "Bridal Shoot",          category: "bridal" },
+  { id: 1,  src: "images/shoot1.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
+  { id: 2,  src: "images/shoot2.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
+  { id: 3,  src: "images/shoot3.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
+  { id: 4,  src: "images/shoot4.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
+  { id: 5,  src: "images/shoot5.jpg",  title: "Couple Party",          category: "cocktail" },
+  { id: 6,  src: "images/shoot6.jpg",  title: "Couple Party",          category: "cocktail" },
+  { id: 7,  src: "images/shoot7.jpg",  title: "Bridal Shoot",          category: "bridal" },
+  { id: 8,  src: "images/shoot8.jpg",  title: "Party Hall Decoration", category: "wedding" },
+  { id: 9,  src: "images/shoot9.jpg",  title: "Party Hall Decoration", category: "wedding" },
+  { id: 10, src: "images/shoot10.jpg", title: "Groom Entry",           category: "groom" },
+  { id: 11, src: "images/shoot11.jpg", title: "Bridal Shoot",          category: "bridal" },
+  { id: 12, src: "images/shoot12.jpg", title: "Bridal Shoot",          category: "bridal" },
 ];
 // ===== RENDER GALLERY =====
 let currentImages = [...galleryData];
