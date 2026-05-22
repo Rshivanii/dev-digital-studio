@@ -1,3 +1,4 @@
+emailjs.init("lstms8ahQMvn4poeQ");
 // ===== AOS INIT =====
 AOS.init({ duration: 1000, once: true });
 
@@ -173,6 +174,33 @@ document.getElementById("bookingForm").addEventListener("submit", function (e) {
     return;
   }
 
+  status.textContent = "Sending...";
+  status.style.color = "#d4af37";
+
+  const templateParams = {
+    from_name: name,
+    phone: phone,
+    event: event || "Not specified",
+    date: date || "Not specified",
+    message: message || "None"
+  };
+
+  emailjs.send("service_methpmi", "template_8fkw6ql", templateParams)
+    .then(() => {
+      status.textContent = "✅ Enquiry sent! We will contact you soon.";
+      status.style.color = "#d4af37";
+
+      const waText = `🎯 *New Booking Enquiry — Dev Studio*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n🎉 *Event:* ${event || "Not specified"}\n📅 *Date:* ${date || "Not specified"}\n💬 *Message:* ${message || "None"}`;
+      window.open(`https://wa.me/919810675960?text=${encodeURIComponent(waText)}`, "_blank");
+
+      this.reset();
+    })
+    .catch((error) => {
+      status.textContent = "❌ Something went wrong. Please try again!";
+      status.style.color = "#ff4d4d";
+      console.error(error);
+    });
+});
   // WhatsApp Notification to Owner
   const waText = `🎯 *New Booking Enquiry — Dev Studio*
   
