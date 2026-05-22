@@ -5,7 +5,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/images", express.static("C:/Users/Shivani/Downloads/DEV STUDIO WEBSITE/backend/public/images"));
+app.use("/images", express.static(__dirname + "/public/images"));
 
 // Home Route
 app.get("/", (req, res) => {
@@ -21,8 +21,9 @@ app.get("/api/gallery", (req, res) => {
     { id: 4, image: "/images/shoot4.jpeg", title: "Shoot 4" }
   ]);
 });
+
 // Start Server
-console.log(__dirname);
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
