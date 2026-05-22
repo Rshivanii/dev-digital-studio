@@ -1,4 +1,5 @@
 emailjs.init("lstms8ahQMvn4poeQ");
+
 // ===== AOS INIT =====
 AOS.init({ duration: 1000, once: true });
 
@@ -58,22 +59,21 @@ hamburger.addEventListener("click", () => {
 });
 
 // ===== GALLERY DATA =====
-// Abhi images ko categories assign karo
-// Baad mein backend se aayegi — abhi sab images show hongi
 const galleryData = [
-  { id: 1,  src: "images/shoot1.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
-  { id: 2,  src: "images/shoot2.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
-  { id: 3,  src: "images/shoot3.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
-  { id: 4,  src: "images/shoot4.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
-  { id: 5,  src: "images/shoot5.jpg",  title: "Couple Party",          category: "cocktail" },
-  { id: 6,  src: "images/shoot6.jpg",  title: "Couple Party",          category: "cocktail" },
-  { id: 7,  src: "images/shoot7.jpg",  title: "Bridal Shoot",          category: "bridal" },
-  { id: 8,  src: "images/shoot8.jpg",  title: "Party Hall Decoration", category: "wedding" },
-  { id: 9,  src: "images/shoot9.jpg",  title: "Party Hall Decoration", category: "wedding" },
-  { id: 10, src: "images/shoot10.jpg", title: "Groom Entry",           category: "groom" },
-  { id: 11, src: "images/shoot11.jpg", title: "Bridal Shoot",          category: "bridal" },
-  { id: 12, src: "images/shoot12.jpg", title: "Bridal Shoot",          category: "bridal" },
+  { id: 1,  src: "https://dev-digital-studio.onrender.com/images/shoot1.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
+  { id: 2,  src: "https://dev-digital-studio.onrender.com/images/shoot2.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
+  { id: 3,  src: "https://dev-digital-studio.onrender.com/images/shoot3.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
+  { id: 4,  src: "https://dev-digital-studio.onrender.com/images/shoot4.jpeg", title: "Pre Wedding Shoot",     category: "pre-wedding" },
+  { id: 5,  src: "https://dev-digital-studio.onrender.com/images/shoot5.jpg",  title: "Couple Party",          category: "cocktail" },
+  { id: 6,  src: "https://dev-digital-studio.onrender.com/images/shoot6.jpg",  title: "Couple Party",          category: "cocktail" },
+  { id: 7,  src: "https://dev-digital-studio.onrender.com/images/shoot7.jpg",  title: "Bridal Shoot",          category: "bridal" },
+  { id: 8,  src: "https://dev-digital-studio.onrender.com/images/shoot8.jpg",  title: "Party Hall Decoration", category: "wedding" },
+  { id: 9,  src: "https://dev-digital-studio.onrender.com/images/shoot9.jpg",  title: "Party Hall Decoration", category: "wedding" },
+  { id: 10, src: "https://dev-digital-studio.onrender.com/images/shoot10.jpg", title: "Groom Entry",           category: "groom" },
+  { id: 11, src: "https://dev-digital-studio.onrender.com/images/shoot11.jpg", title: "Bridal Shoot",          category: "bridal" },
+  { id: 12, src: "https://dev-digital-studio.onrender.com/images/shoot12.jpg", title: "Bridal Shoot",          category: "bridal" },
 ];
+
 // ===== RENDER GALLERY =====
 let currentImages = [...galleryData];
 
@@ -96,13 +96,11 @@ function renderGallery(data, containerId) {
   AOS.refresh();
 }
 
-// Load both grids on page load
 renderGallery(galleryData, "gallery-grid");
 renderGallery(galleryData, "portfolio-grid");
 
 // ===== FILTER GALLERY =====
 function filterGallery(category) {
-  // Active button update
   document.querySelectorAll(".filter-btn").forEach(btn => {
     btn.classList.remove("active");
     if (
@@ -143,12 +141,10 @@ function changeLightbox(direction) {
   document.getElementById("lb-img").src = currentData[currentIndex].src;
 }
 
-// Close lightbox on background click
 document.getElementById("lightbox").addEventListener("click", function (e) {
   if (e.target === this) closeLightbox();
 });
 
-// Keyboard navigation
 document.addEventListener("keydown", (e) => {
   if (document.getElementById("lightbox").classList.contains("active")) {
     if (e.key === "ArrowRight") changeLightbox(1);
@@ -189,10 +185,8 @@ document.getElementById("bookingForm").addEventListener("submit", function (e) {
     .then(() => {
       status.textContent = "✅ Enquiry sent! We will contact you soon.";
       status.style.color = "#d4af37";
-
       const waText = `🎯 *New Booking Enquiry — Dev Studio*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n🎉 *Event:* ${event || "Not specified"}\n📅 *Date:* ${date || "Not specified"}\n💬 *Message:* ${message || "None"}`;
       window.open(`https://wa.me/919810675960?text=${encodeURIComponent(waText)}`, "_blank");
-
       this.reset();
     })
     .catch((error) => {
@@ -201,24 +195,8 @@ document.getElementById("bookingForm").addEventListener("submit", function (e) {
       console.error(error);
     });
 });
-  // WhatsApp Notification to Owner
-  const waText = `🎯 *New Booking Enquiry — Dev Studio*
-  
-👤 *Name:* ${name}
-📞 *Phone:* ${phone}
-🎉 *Event:* ${event || "Not specified"}
-📅 *Date:* ${date || "Not specified"}
-💬 *Message:* ${message || "None"}`;
 
-  const waURL = `https://wa.me/919810675960?text=${encodeURIComponent(waText)}`;
-  window.open(waURL, "_blank");
-
-  status.textContent = "✅ Enquiry sent! We will contact you soon.";
-  status.style.color = "#d4af37";
-
-  this.reset();
-});
-
+// ===== FILTER AND GO =====
 function filterAndGo(category) {
   filterGallery(category);
   document.getElementById("events").scrollIntoView({ behavior: "smooth" });
