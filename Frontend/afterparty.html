@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>After Party — Dev Digital Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #0a0a0a; color: #f0ece4; overflow-x: hidden; }
+    .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 18px 60px; background: rgba(10,10,10,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; letter-spacing: 4px; color: #d4af37; text-decoration: none; }
+    .nav-back { color: #ccc; text-decoration: none; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 50px; transition: all 0.3s; }
+    .nav-back:hover { border-color: #d4af37; color: #d4af37; }
+    .hero { height: 70vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=1600') center/cover no-repeat; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.75)); }
+    .hero-content { position: relative; z-index: 2; padding: 0 20px; }
+    .hero-tag { font-size: 0.72rem; letter-spacing: 5px; text-transform: uppercase; color: #d4af37; margin-bottom: 16px; display: block; }
+    .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 300; line-height: 1; letter-spacing: 6px; text-transform: uppercase; color: #fff; }
+    .hero-content h1 em { font-style: italic; color: #d4af37; }
+    .hero-content p { margin-top: 16px; font-size: 1rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .section { padding: 80px 60px; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-tag { display: inline-block; font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase; color: #d4af37; margin-bottom: 14px; }
+    .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: #f0ece4; letter-spacing: 2px; }
+    .categories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; max-width: 1300px; margin: 0 auto; }
+    .category-card { position: relative; height: 320px; border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.4s ease; }
+    .category-card:hover { transform: translateY(-8px); }
+    .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .category-card:hover img { transform: scale(1.08); }
+    .category-card .card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); }
+    .card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 20px; }
+    .card-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+    .card-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: #fff; letter-spacing: 1px; margin-bottom: 4px; }
+    .card-content p { font-size: 0.78rem; color: rgba(255,255,255,0.6); letter-spacing: 1px; }
+    .card-arrow { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem; opacity: 0; transition: all 0.3s; }
+    .category-card:hover .card-arrow { opacity: 1; border-color: #d4af37; color: #d4af37; }
+    .gallery-modal { display: none; position: fixed; inset: 0; z-index: 9000; background: #0a0a0a; overflow-y: auto; }
+    .gallery-modal.active { display: block; animation: slideUp 0.4s ease; }
+    @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .modal-header { position: sticky; top: 0; z-index: 10; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); padding: 20px 60px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: #d4af37; }
+    .modal-close { background: none; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; font-family: 'DM Sans', sans-serif; }
+    .modal-close:hover { border-color: #d4af37; color: #d4af37; }
+    .modal-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; padding: 40px 60px; max-width: 1400px; margin: 0 auto; }
+    .modal-img-wrap { position: relative; aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; cursor: pointer; }
+    .modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .modal-img-wrap:hover img { transform: scale(1.06); }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 9999; align-items: center; justify-content: center; }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 8px; object-fit: contain; }
+    .lb-close { position: absolute; top: 20px; right: 28px; background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; opacity: 0.7; }
+    .lb-prev, .lb-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: none; color: #fff; font-size: 2.5rem; padding: 10px 18px; cursor: pointer; border-radius: 8px; }
+    .lb-prev { left: 20px; } .lb-next { right: 20px; }
+    footer { background: #050505; text-align: center; padding: 30px; border-top: 1px solid rgba(255,255,255,0.06); }
+    footer p { color: rgba(255,255,255,0.3); font-size: 0.8rem; letter-spacing: 1px; }
+    .float-btn { position: fixed; right: 24px; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; text-decoration: none; z-index: 999; transition: transform 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+    .float-btn:hover { transform: scale(1.15); }
+    .whatsapp-float { bottom: 88px; background: #25d366; }
+    .insta-float { bottom: 24px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    @media (max-width: 768px) { .navbar { padding: 16px 20px; } .section { padding: 60px 20px; } .modal-header { padding: 16px 20px; } .modal-gallery { padding: 24px 20px; } .categories-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); } .category-card { height: 220px; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">DEV STUDIO</a>
+    <a href="index.html" class="nav-back">← Back to Home</a>
+  </nav>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Dev Digital Studio</span>
+      <h1>After<br><em>Party</em></h1>
+      <p>The night is still young — keep celebrating!</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-header">
+      <span class="section-tag">Browse by Type</span>
+      <h2>After Party Shoots</h2>
+    </div>
+    <div class="categories-grid">
+      <div class="category-card" onclick="openGallery('dj-night')">
+        <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=600" alt="DJ Night">
+        <div class="card-overlay"></div>
+        <div class="card-content"><span class="card-icon">🎵</span><h3>DJ Night</h3><p>Dance till dawn</p></div>
+        <div class="card-arrow">→</div>
+      </div>
+      <div class="category-card" onclick="openGallery('rooftop')">
+        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600" alt="Rooftop Party">
+        <div class="card-overlay"></div>
+        <div class="card-content"><span class="card-icon">🌃</span><h3>Rooftop Party</h3><p>City lights & good vibes</p></div>
+        <div class="card-arrow">→</div>
+      </div>
+      <div class="category-card" onclick="openGallery('pool-party')">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600" alt="Pool Party">
+        <div class="card-overlay"></div>
+        <div class="card-content"><span class="card-icon">🏊</span><h3>Pool Party</h3><p>Splash into the night</p></div>
+        <div class="card-arrow">→</div>
+      </div>
+      <div class="category-card" onclick="openGallery('lounge')">
+        <img src="https://images.unsplash.com/photo-1543007631-283050bb3e8c?w=600" alt="Lounge Party">
+        <div class="card-overlay"></div>
+        <div class="card-content"><span class="card-icon">🥃</span><h3>Lounge Party</h3><p>Chill vibes, great memories</p></div>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+  </section>
+  <div class="gallery-modal" id="galleryModal">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle">Gallery</span>
+      <button class="modal-close" onclick="closeGallery()">✕ Close</button>
+    </div>
+    <div class="modal-gallery" id="modalGallery"></div>
+  </div>
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <button class="lb-prev" onclick="changeLightbox(-1)">&#8249;</button>
+    <img src="" id="lb-img" alt="">
+    <button class="lb-next" onclick="changeLightbox(1)">&#8250;</button>
+  </div>
+  <footer><p>© 2026 Dev Digital Studio | Sector 16, Faridabad, Haryana</p></footer>
+  <a href="https://wa.me/919810675960" class="float-btn whatsapp-float" target="_blank">💬</a>
+  <a href="https://www.instagram.com/devstudio0707" class="float-btn insta-float" target="_blank">📸</a>
+  <script>
+    const galleryImages = {
+      'dj-night': ['https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800','https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800','https://images.unsplash.com/photo-1543007631-283050bb3e8c?w=800'],
+      'rooftop': ['https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800','https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800','https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800'],
+      'pool-party': ['https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800','https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800','https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800'],
+      'lounge': ['https://images.unsplash.com/photo-1543007631-283050bb3e8c?w=800','https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800','https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800'],
+    };
+    const galleryTitles = { 'dj-night': 'DJ Night', 'rooftop': 'Rooftop Party', 'pool-party': 'Pool Party', 'lounge': 'Lounge Party' };
+    let currentLightboxImages = [], currentLightboxIndex = 0;
+    function openGallery(category) {
+      const images = galleryImages[category] || [], title = galleryTitles[category] || category;
+      document.getElementById('modalTitle').textContent = title;
+      const grid = document.getElementById('modalGallery');
+      grid.innerHTML = '';
+      images.forEach((src, i) => { const wrap = document.createElement('div'); wrap.className = 'modal-img-wrap'; wrap.innerHTML = `<img src="${src}" alt="${title}" loading="lazy">`; wrap.addEventListener('click', () => openLightbox(images, i)); grid.appendChild(wrap); });
+      document.getElementById('galleryModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeGallery() { document.getElementById('galleryModal').classList.remove('active'); document.body.style.overflow = ''; }
+    function openLightbox(images, index) { currentLightboxImages = images; currentLightboxIndex = index; document.getElementById('lb-img').src = images[index]; document.getElementById('lightbox').classList.add('active'); }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+    function changeLightbox(dir) { currentLightboxIndex = (currentLightboxIndex + dir + currentLightboxImages.length) % currentLightboxImages.length; document.getElementById('lb-img').src = currentLightboxImages[currentLightboxIndex]; }
+    document.addEventListener('keydown', (e) => { if (document.getElementById('lightbox').classList.contains('active')) { if (e.key === 'ArrowRight') changeLightbox(1); if (e.key === 'ArrowLeft') changeLightbox(-1); if (e.key === 'Escape') closeLightbox(); } if (e.key === 'Escape') closeGallery(); });
+  </script>
+</body>
+</html>
