@@ -423,7 +423,7 @@
       document.getElementById('lb-img').src = currentLightboxImages[currentLightboxIndex];
     }
 
-    document.addEventListeners('keydown', (e) => {
+       document.addEventListener('keydown', (e) => {
       if (document.getElementById('lightbox').classList.contains('active')) {
         if (e.key === 'ArrowRight') changeLightbox(1);
         if (e.key === 'ArrowLeft') changeLightbox(-1);
