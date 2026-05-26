@@ -176,7 +176,7 @@
         <div class="card-arrow">→</div>
       </div>
 
-      <div class="category-card" onclick="openGallery('haldi')">
+      <div class="category-card" id="haldi" onclick="openGallery('haldi')"></div>
         <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600" alt="Haldi">
         <div class="card-overlay"></div>
         <div class="card-content">
@@ -198,7 +198,7 @@
         <div class="card-arrow">→</div>
       </div>
 
-      <div class="category-card" onclick="openGallery('sangeet')">
+      <div class="category-card" id="sangeet" onclick="openGallery('sangeet')">
         <img src="https://images.unsplash.com/photo-1578353022142-09264fd64295?w=600" alt="Sangeet">
         <div class="card-overlay"></div>
         <div class="card-content">
@@ -209,7 +209,7 @@
         <div class="card-arrow">→</div>
       </div>
 
-      <div class="category-card" onclick="openGallery('cocktail')">
+      <div class="category-card" id="cocktail" onclick="openGallery('cocktail')">
         <img src="https://images.unsplash.com/photo-1543007631-283050bb3e8c?w=600" alt="Cocktail">
         <div class="card-overlay"></div>
         <div class="card-content">
@@ -242,7 +242,7 @@
         <div class="card-arrow">→</div>
       </div>
 
-      <div class="category-card" onclick="openGallery('baarat')">
+      <div class="category-card" id="baarat" onclick="openGallery('baarat')">
         <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600" alt="Baarat">
         <div class="card-overlay"></div>
         <div class="card-content">
@@ -431,6 +431,12 @@
       }
       if (e.key === 'Escape') closeGallery();
     });
+    window.addEventListener('load', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && galleryImages[hash]) {
+    setTimeout(() => openGallery(hash), 500);
+  }
+});
   </script>
 </body>
 </html>
