@@ -5,6 +5,7 @@ AOS.init({ duration: 1000, once: true });
 
 // ===== TYPING ANIMATION =====
 const words = [
+  
   "Wedding Moments",
   "Pre-Wedding Shoots",
   "Birthday Memories",
@@ -181,7 +182,7 @@ document.getElementById("bookingForm").addEventListener("submit", function (e) {
     message: message || "None"
   };
 
-  emailjs.send("service_methpmi", "template_8fkw6ql", templateParams)
+  emailjs.send("service_methpmi", "template_ncstfzp", templateParams, EMAILJS_PUBLIC_KEY)
     .then(() => {
       status.textContent = "✅ Enquiry sent! We will contact you soon.";
       status.style.color = "#d4af37";
