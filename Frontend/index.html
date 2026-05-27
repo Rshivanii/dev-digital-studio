@@ -168,6 +168,49 @@
     </div>
   </section>
 
+  <!-- REVIEWS SECTION -->
+<section class="section" id="reviews">
+  <div class="section-header" data-aos="fade-up">
+    <span class="section-tag">Client Love</span>
+    <h2>What Our Clients <em>Say</em></h2>
+  </div>
+
+  <!-- Existing Reviews -->
+  <div class="reviews-grid" id="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Dev Studio captured our wedding beautifully! Every moment was perfect. Highly recommended!"</p>
+      <p class="review-author">— Priya & Rahul</p>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Amazing pre-wedding shoot! The team was professional and creative. We loved every photo!"</p>
+      <p class="review-author">— Neha & Amit</p>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Best birthday shoot ever! My daughter was so happy. Thank you Dev Studio!"</p>
+      <p class="review-author">— Sunita Sharma</p>
+    </div>
+  </div>
+
+  <!-- Add Review Form -->
+  <div class="review-form-wrap" data-aos="fade-up">
+    <h3>Leave Your Review</h3>
+    <div class="star-select" id="starSelect">
+      <span onclick="setRating(1)">★</span>
+      <span onclick="setRating(2)">★</span>
+      <span onclick="setRating(3)">★</span>
+      <span onclick="setRating(4)">★</span>
+      <span onclick="setRating(5)">★</span>
+    </div>
+    <input type="text" id="reviewName" placeholder="Your Name" />
+    <textarea id="reviewText" placeholder="Write your review..." rows="3"></textarea>
+    <button onclick="submitReview()">Submit Review</button>
+    <p id="review-status"></p>
+  </div>
+</section>
+
   <!-- CONTACT + BOOKING -->
   <section class="section dark-section" id="contact">
     <div class="section-header" data-aos="fade-up">

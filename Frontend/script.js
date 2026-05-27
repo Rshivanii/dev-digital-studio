@@ -201,3 +201,48 @@ function filterAndGo(category) {
   filterGallery(category);
   document.getElementById("events").scrollIntoView({ behavior: "smooth" });
 }
+// ===== REVIEWS =====
+let selectedRating = 0;
+
+function setRating(rating) {
+  selectedRating = rating;
+  const stars = document.querySelectorAll('#starSelect span');
+  stars.forEach((star, i) => {
+    star.classList.toggle('active', i < rating);
+  });
+}
+
+function submitReview() {
+  const name = document.getElementById('reviewName').value.trim();
+  const text = document.getElementById('reviewText').value.trim();
+  const status = document.getElementById('review-status');
+
+  if (!name || !text || selectedRating === 0) {
+    status.textContent = 'Please fill all fields and select rating!';
+    status.style.color = '#ff4d4d';
+    return;
+  }
+
+  // Add review to grid
+  const grid = document.getElementById('reviews-grid');
+  const stars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+  const card = document.createElement('div');
+  card.className = 'review-card';
+  card.innerHTML = `
+    <div class="review-stars">${stars}</div>
+    <p class="review-text">"${text}"</p>
+    <p class="review-author">— ${name}</p>
+  `;
+  grid.appendChild(card);
+
+  // WhatsApp notification to owner
+  const waText = `⭐ *New Review — Dev Studio*\n\n👤 *Name:* ${name}\n⭐ *Rating:* ${'★'.repeat(selectedRating)}\n💬 *Review:* ${text}`;
+  window.open(`https://wa.me/919810675960?text=${encodeURIComponent(waText)}`, '_blank');
+
+  status.textContent = '✅ Review submitted! Thank you!';
+  status.style.color = '#f48fb1';
+
+  document.getElementById('reviewName').value = '';
+  document.getElementById('reviewText').value = '';
+  setRating(0);
+}
