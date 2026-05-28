@@ -211,67 +211,68 @@
   </div>
 </section>
 
-  <!-- CONTACT + BOOKING -->
-  <section class="section dark-section" id="contact">
-    <div class="section-header" data-aos="fade-up">
-      <span class="section-tag">Get in Touch</span>
-      <h2>Book Your Shoot</h2>
-    </div>
-    <div class="contact-wrap" data-aos="fade-up">
-      <form id="bookingForm" class="booking-form">
-        <div class="form-row">
-          <input type="text" id="fname" placeholder="Your Name" required>
-          <input type="tel" id="fphone" placeholder="Phone Number" required>
-        </div>
-        <div class="form-row">
-          <select id="fevent">
-            <option value="">Select Event Type</option>
-            <option>Pre Wedding</option>
-            <option>Wedding</option>
-            <option>Mehndi</option>
-            <option>Haldi</option>
-            <option>Cocktail Party</option>
-            <option>Bachelor Party</option>
-            <option>Baarat</option>
-            <option>Birthday</option>
-            <option>Corporate</option>
-            <option>Kitty Party</option>
-            <option>Fresher / Farewell</option>
-            <option>After Party</option>
-            <option>Baby Shower</option>
-            <option>Other</option>
-          </select>
-          <input type="date" id="fdate">
-        </div>
-        <textarea id="fmessage" placeholder="Any special requirements..." rows="3"></textarea>
-        <button type="submit" class="submit-btn">Book Now — Send Enquiry</button>
-        <p id="form-status" class="form-status"></p>
-      </form>
-      <div class="contact-info">
-        <div class="contact-card">
-          <span>📞</span>
-          <div>
-            <p class="label">Call / WhatsApp</p>
-            <p><a href="tel:9810675960">9810675960</a></p>
-          </div>
-        </div>
-        <div class="contact-card">
-          <span>📍</span>
-          <div>
-            <p class="label">Studio Location</p>
-            <p>Sector 16, Faridabad, Haryana</p>
-          </div>
-        </div>
-        <div class="contact-card">
-          <span>✉️</span>
-          <div>
-            <p class="label">Email</p>
-            <p>devstudio@gmail.com</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <form id="bookingForm" class="booking-form">
+  <div class="form-row">
+    <input type="text"  name="from_name" id="fname"    placeholder="Your Name" required>
+    <input type="tel"   name="phone"     id="fphone"   placeholder="Phone Number" required>
+  </div>
+  <div class="form-row">
+    <input type="email" name="email"     id="femail"   placeholder="Your Email">
+    <select             name="event"     id="fevent">
+      <option value="">Select Event Type</option>
+      <option>Pre Wedding</option>
+      <option>Wedding</option>
+      <option>Mehndi</option>
+      <option>Haldi</option>
+      <option>Cocktail Party</option>
+      <option>Bachelor Party</option>
+      <option>Baarat</option>
+      <option>Birthday</option>
+      <option>Corporate</option>
+      <option>Kitty Party</option>
+      <option>Fresher / Farewell</option>
+      <option>After Party</option>
+      <option>Baby Shower</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <div class="form-row">
+    <input type="date" name="date" id="fdate">=
+  </div>
+  <textarea name="message" id="fmessage" placeholder="Any special requirements..." rows="3"></textarea>
+  <button type="submit" class="submit-btn">Book Now — Send Enquiry</button>
+  <p id="form-status" class="form-status"></p>
+</form>
+// EmailJS Init
+emailjs.init("YOUR_PUBLIC_KEY"); // EmailJS > Account > Public Key yahan paste karo
+
+// Booking Form Submit
+document.getElementById("bookingForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const status = document.getElementById("form-status");
+  status.textContent = "Sending...";
+  status.style.color = "#ccc";
+
+  const templateParams = {
+    from_name : document.getElementById("fname").value,
+    phone     : document.getElementById("fphone").value,
+    event     : document.getElementById("fevent").value,
+    date      : document.getElementById("fdate").value,
+    message   : document.getElementById("fmessage").value,
+  };
+
+  emailjs.send("service_methpmi", "template_ncstfzp", templateParams)
+    .then(function () {
+      status.style.color = "#4CAF50";
+      status.textContent = "✅ Enquiry sent! We will contact you soon.";
+      document.getElementById("bookingForm").reset();
+    })
+    .catch(function (err) {
+      status.style.color = "#f44336";
+      status.textContent = "❌ Error: " + JSON.stringify(err);
+    });
+});
 
   <!-- FOOTER -->
   <footer>

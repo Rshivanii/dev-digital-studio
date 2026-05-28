@@ -1,11 +1,9 @@
-emailjs.init("lstms8ahQMvn4poeQ");
 
 // ===== AOS INIT =====
 AOS.init({ duration: 1000, once: true });
 
 // ===== TYPING ANIMATION =====
 const words = [
-  
   "Wedding Moments",
   "Pre-Wedding Shoots",
   "Birthday Memories",
@@ -175,14 +173,14 @@ document.getElementById("bookingForm").addEventListener("submit", function (e) {
   status.style.color = "#d4af37";
 
   const templateParams = {
-    from_name: name,
-    phone: phone,
-    event: event || "Not specified",
-    date: date || "Not specified",
-    message: message || "None"
+    from_name : name,
+    phone     : phone,
+    event     : event   || "Not specified",
+    date      : date    || "Not specified",
+    message   : message || "None"
   };
 
-  emailjs.send("service_methpmi", "template_ncstfzp", templateParams, EMAILJS_PUBLIC_KEY)
+  emailjs.send("service_methpmi", "template_ncstfzp", templateParams)
     .then(() => {
       status.textContent = "✅ Enquiry sent! We will contact you soon.";
       status.style.color = "#d4af37";
@@ -202,6 +200,7 @@ function filterAndGo(category) {
   filterGallery(category);
   document.getElementById("events").scrollIntoView({ behavior: "smooth" });
 }
+
 // ===== REVIEWS =====
 let selectedRating = 0;
 
@@ -214,8 +213,8 @@ function setRating(rating) {
 }
 
 function submitReview() {
-  const name = document.getElementById('reviewName').value.trim();
-  const text = document.getElementById('reviewText').value.trim();
+  const name   = document.getElementById('reviewName').value.trim();
+  const text   = document.getElementById('reviewText').value.trim();
   const status = document.getElementById('review-status');
 
   if (!name || !text || selectedRating === 0) {
@@ -224,10 +223,9 @@ function submitReview() {
     return;
   }
 
-  // Add review to grid
-  const grid = document.getElementById('reviews-grid');
+  const grid  = document.getElementById('reviews-grid');
   const stars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
-  const card = document.createElement('div');
+  const card  = document.createElement('div');
   card.className = 'review-card';
   card.innerHTML = `
     <div class="review-stars">${stars}</div>
@@ -236,7 +234,6 @@ function submitReview() {
   `;
   grid.appendChild(card);
 
-  // WhatsApp notification to owner
   const waText = `⭐ *New Review — Dev Studio*\n\n👤 *Name:* ${name}\n⭐ *Rating:* ${'★'.repeat(selectedRating)}\n💬 *Review:* ${text}`;
   window.open(`https://wa.me/919810675960?text=${encodeURIComponent(waText)}`, '_blank');
 
