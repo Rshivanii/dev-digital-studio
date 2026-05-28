@@ -1,4 +1,5 @@
-
+emailjs.init("lstms8ahQMvn4poeQ");
+const EMAILJS_PUBLIC_KEY = "lstms8ahQMvn4poeQ";
 // ===== AOS INIT =====
 AOS.init({ duration: 1000, once: true });
 
